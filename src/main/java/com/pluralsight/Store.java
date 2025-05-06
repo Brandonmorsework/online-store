@@ -157,9 +157,6 @@ public class Store {
 
         private static void checkOut(Scanner scanner) {
 
-
-
-
                 if (cart.isEmpty()) {
                     System.out.println(" ");
                     System.out.println("Your Cart is Empty!");
@@ -179,28 +176,40 @@ public class Store {
                         totalPrice += cartItem.getPrice();
                     }
 
-                    System.out.println("Cart Total: S" + totalPrice);
+                    System.out.println("Cart Total: $" + totalPrice);
                     System.out.println(" ");
 
                     System.out.println("How Much Will You be Adding to Pay?:");
                     double userAmount = scanner.nextDouble();
+                    scanner.nextLine();
 
                     if (userAmount >= totalPrice) {
                         System.out.println("Transaction Complete!");
                         double change = userAmount - totalPrice;
                         System.out.println(" ");
                         System.out.println("Here is Your Receipt:");
+                        System.out.println(" ");
+                        double finalTotalPrice = 0.0;
+                        for (Product cartItem : cart) {
 
-                        System.out.println("Your change: $" + change);
+                            System.out.println(" ");
+                            System.out.println(cartItem);
+                            finalTotalPrice += cartItem.getPrice();
+                        }
+                        System.out.println(" ");
+                        System.out.println("Your Cart Total is: $" + finalTotalPrice);
+                        System.out.println(" ");
+                        System.out.printf("%-12s $%-10.2f", "Your change:", change);
+                        System.out.println(" ");
+                        System.out.println("Clearing Cart, Thank You For Shopping!");
+                        cart.clear();
+
                     } else {
                         System.out.println("Not Enough Money Provided!");
-                        return;
-                    }
 
-                    System.out.println(" ");
-                    System.out.println("Your Cart Total is: $" + totalPrice);
+                    }
                 }
-            }
+        }
     }
 
 
