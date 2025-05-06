@@ -109,43 +109,52 @@ public class Store {
             System.out.println("Your Cart is Empty!");
 
         } else {
+            double totalPrice = 0.0;
+
             for (Product cartItem : cart) {
                 System.out.println(" ");
                 System.out.println(cartItem);
+                totalPrice += cartItem.getPrice();
             }
+
+                System.out.println(" ");
+                System.out.println("Your Cart Total is: $" + totalPrice);
+            }
+    }
+
+        public static void addItemsToCart() {
+            Scanner scanner = new Scanner(System.in);
+            System.out.println(" ");
+            System.out.println("Enter the ID of the Product You Want to Add to Your Cart");
+            System.out.println(" ");
+            String iD = scanner.nextLine().trim();
+
+            for (Product product : products) {
+                if (product.getid().equalsIgnoreCase(iD)) {
+                    System.out.println(" ");
+                    System.out.println("Added " + product.getProductName() + " To the Cart!");
+                    cart.add(product);
+                    System.out.println(" ");
+                    System.out.println(product);
+
+                    double totalPrice = 0.0;
+                    for (Product cartItem : cart) {
+                        totalPrice += cartItem.getPrice();
+                    }
+
+                    System.out.println("Total Price of Your Shopping Cart is: $" + totalPrice);
+                    return;
+                }
+            }
+            System.out.println("ID of Product Not Found...");
+
+        }
+
+        private static void CheckOut () {
+
         }
     }
 
-
-
-
-    public static void addItemsToCart() {
-    Scanner scanner = new Scanner(System.in);
-        System.out.println(" ");
-        System.out.println("Enter the ID of the Product You Want to Add to Your Cart");
-        System.out.println(" ");
-        String iD = scanner.nextLine().trim();
-
-        for (Product product : products) {
-            if (product.getid().equalsIgnoreCase(iD)) {
-                System.out.println(" ");
-                System.out.println("Added " + product.getProductName() + " To the Cart!");
-                cart.add(product);
-                System.out.println(" ");
-                System.out.println(product);
-
-                return;
-            }
-        }
-        System.out.println("ID of Product Not Found...");
-
-        }
-
-    private static void CheckOut() {
-
-    }
-
-}
 
 
 
