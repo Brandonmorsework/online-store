@@ -24,16 +24,24 @@ public class Store {
             System.out.println(" ");
             System.out.println("Please Choose an Option: ");
             System.out.println(" ");
-            System.out.println("Press D to Display All Available Products");
+            System.out.println("Press 'D' to Display All Available Products");
             System.out.println(" ");
-            System.out.println("Press A to Add Items to Your Cart");
+            System.out.println("Press 'A' to Add Items to Your Cart");
             System.out.println(" ");
-            System.out.println("Press S to View Your Shopping Cart");
+            System.out.println("Press 'S' to View Your Shopping Cart");
+            System.out.println(" ");
+            System.out.println("Press 'X' to Exit the Store");
+            System.out.println(" ");
 
             String input = scanner.nextLine().trim();
 
             switch  (input.toUpperCase()) {
                 case "A":
+                    System.out.println(" ");
+                    System.out.printf("%-12s | %-35s | %-10s\n", "ID", "Product Name", "Price");
+                    System.out.println(" ");
+                    for (Product shoppingProducts : products)
+                        System.out.println(shoppingProducts);
                     addItemsToCart();
                     break;
                 case "D":
@@ -42,13 +50,15 @@ public class Store {
                 case "S":
                     displayShoppingCart();
                     break;
+                case "X":
+                    System.out.println(" ");
+                    System.out.println("Thank You For Shopping, Goodbye!");
+                    running = false;
+                    break;
             }
 
         }
     }
-
-
-
 
     public static void loadProducts(String fileName) {
 
@@ -74,10 +84,15 @@ public class Store {
         }
     }
 
+
+
     public static void displayProducts() {
 
         System.out.println(" ");
         System.out.println("Here Are The Available Products:");
+        System.out.println(" ");
+        System.out.printf("%-12s | %-35s | %-10s", "ID", "Product Name", "Price");
+        System.out.println(" ");
         for (Product shoppingProduct : products) {
             System.out.println(" ");
             System.out.println(shoppingProduct);
@@ -108,18 +123,28 @@ public class Store {
     Scanner scanner = new Scanner(System.in);
         System.out.println(" ");
         System.out.println("Enter the ID of the Product You Want to Add to Your Cart");
+        System.out.println(" ");
         String iD = scanner.nextLine().trim();
 
         for (Product product : products) {
             if (product.getid().equalsIgnoreCase(iD)) {
+                System.out.println(" ");
+                System.out.println("Added " + product.getProductName() + " To the Cart!");
                 cart.add(product);
-                System.out.println(product.getProductName() + " Has Been Added to Your Cart");
+                System.out.println(" ");
+                System.out.println(product);
+
                 return;
             }
         }
         System.out.println("ID of Product Not Found...");
 
         }
+
+    private static void CheckOut() {
+
+    }
+
 }
 
 
