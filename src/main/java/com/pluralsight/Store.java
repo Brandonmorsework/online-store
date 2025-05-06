@@ -9,12 +9,42 @@ import java.util.Scanner;
 public class Store {
 
     private static ArrayList<Product> products = new ArrayList<>();
+    private static ArrayList<Product> cart = new ArrayList<>();
     private static final String FILE_NAME = "Products.csv";
 
     public static void main(String[] args) {
         loadProducts(FILE_NAME);
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
+
+
+        while (running) {
+            System.out.println(" ");
+            System.out.println("Welcome to the Store!");
+            System.out.println(" ");
+            System.out.println("Please Choose an Option: ");
+            System.out.println(" ");
+            System.out.println("Press D to Display All Available Products");
+            System.out.println(" ");
+            System.out.println("Press A to Add Items to Your Cart");
+            System.out.println(" ");
+            System.out.println("Press S to View Your Shopping Cart");
+
+            String input = scanner.nextLine().trim();
+
+            switch  (input.toUpperCase()) {
+                case "A":
+                    addItems();
+                    break;
+                case "D":
+                    displayProducts();
+                    break;
+                case "S":
+                    displayShoppingCart();
+                    break;
+            }
+
+        }
     }
 
 
@@ -32,8 +62,8 @@ public class Store {
                 String productName = parts[1];
                 double price = Double.parseDouble(parts[2]);
 
-                Product product = new Product(iD, productName, price);
-                products.add(product);
+                Product shoppingProducts = new Product(iD, productName, price);
+                products.add(shoppingProducts);
 
             }
 
@@ -43,4 +73,43 @@ public class Store {
             System.out.println("Error, File Not Found!");
         }
     }
+    public static void displayProducts() {
+
+        System.out.println(" ");
+        System.out.println("Here Are The Available Products:");
+        for (Product shoppingProduct : products) {
+            System.out.println(" ");
+            System.out.println(shoppingProduct);
+        }
+    }
+
+    public static void displayShoppingCart() {
+
+        System.out.println(" ");
+        System.out.println("Here is Your Current Cart:");
+
+        if (cart.isEmpty()) {
+            System.out.println(" ");
+            System.out.println("Your Cart is Empty!");
+
+        } else {
+            for (Product cartItem : cart) {
+                System.out.println(" ");
+                System.out.println(cartItem);
+            }
+        }
+    }
+
+
+
+
+    public static void addItems() {
+
+
+
+        }
 }
+
+
+
+
