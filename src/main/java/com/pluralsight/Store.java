@@ -34,7 +34,7 @@ public class Store {
 
             switch  (input.toUpperCase()) {
                 case "A":
-                    addItems();
+                    addItemsToCart();
                     break;
                 case "D":
                     displayProducts();
@@ -58,11 +58,11 @@ public class Store {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
-                String iD = parts[0];
+                String id = parts[0];
                 String productName = parts[1];
                 double price = Double.parseDouble(parts[2]);
 
-                Product shoppingProducts = new Product(iD, productName, price);
+                Product shoppingProducts = new Product(id, productName, price);
                 products.add(shoppingProducts);
 
             }
@@ -73,6 +73,7 @@ public class Store {
             System.out.println("Error, File Not Found!");
         }
     }
+
     public static void displayProducts() {
 
         System.out.println(" ");
@@ -103,9 +104,20 @@ public class Store {
 
 
 
-    public static void addItems() {
+    public static void addItemsToCart() {
+    Scanner scanner = new Scanner(System.in);
+        System.out.println(" ");
+        System.out.println("Enter the ID of the Product You Want to Add to Your Cart");
+        String iD = scanner.nextLine().trim();
 
-
+        for (Product product : products) {
+            if (product.getid().equalsIgnoreCase(iD)) {
+                cart.add(product);
+                System.out.println(product.getProductName() + " Has Been Added to Your Cart");
+                return;
+            }
+        }
+        System.out.println("ID of Product Not Found...");
 
         }
 }

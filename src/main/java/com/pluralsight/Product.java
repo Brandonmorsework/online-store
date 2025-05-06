@@ -2,22 +2,22 @@ package com.pluralsight;
 
 public class Product {
 
-    private String iD;
+    private String id;
     private String productName;
     private double price;
 
-    public Product(String iD, String productName, double price) {
-        this.iD = iD;
+    public Product(String id, String productName, double price) {
+        this.id = id;
         this.productName = productName;
         this.price = price;
     }
 
-    public String getiD() {
-        return iD;
+    public String getid() {
+        return id;
     }
 
-    public void setiD(String iD) {
-        this.iD = iD;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -34,5 +34,10 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return String.format ("%-12s | %-35s | $%10.2f\n", id, productName, price);
     }
 }
