@@ -30,6 +30,8 @@ public class Store {
             System.out.println(" ");
             System.out.println("Press 'S' to View Your Shopping Cart");
             System.out.println(" ");
+            System.out.println("Press 'C' to Checkout Your Shopping Cart");
+            System.out.println(" ");
             System.out.println("Press 'X' to Exit the Store");
             System.out.println(" ");
 
@@ -49,6 +51,9 @@ public class Store {
                     break;
                 case "S":
                     displayShoppingCart();
+                    break;
+                case "C":
+                    checkOut(scanner);
                     break;
                 case "X":
                     System.out.println(" ");
@@ -86,7 +91,7 @@ public class Store {
 
 
 
-    public static void displayProducts() {
+    private static void displayProducts() {
 
         System.out.println(" ");
         System.out.println("Here Are The Available Products:");
@@ -99,7 +104,7 @@ public class Store {
         }
     }
 
-    public static void displayShoppingCart() {
+    private static void displayShoppingCart() {
 
         System.out.println(" ");
         System.out.println("Here is Your Current Cart:");
@@ -122,7 +127,7 @@ public class Store {
             }
     }
 
-        public static void addItemsToCart() {
+        private static void addItemsToCart() {
             Scanner scanner = new Scanner(System.in);
             System.out.println(" ");
             System.out.println("Enter the ID of the Product You Want to Add to Your Cart");
@@ -150,9 +155,52 @@ public class Store {
 
         }
 
-        private static void CheckOut () {
+        private static void checkOut(Scanner scanner) {
 
-        }
+
+
+
+                if (cart.isEmpty()) {
+                    System.out.println(" ");
+                    System.out.println("Your Cart is Empty!");
+                    System.out.println(" ");
+                    System.out.println("Heading Back to Home...");
+
+                } else {
+                    double totalPrice = 0.0;
+
+                    System.out.println(" ");
+                    System.out.println("Here is Your Current Cart For Checkout:");
+
+                    for (Product cartItem : cart) {
+
+                        System.out.println(" ");
+                        System.out.println(cartItem);
+                        totalPrice += cartItem.getPrice();
+                    }
+
+                    System.out.println("Cart Total: S" + totalPrice);
+                    System.out.println(" ");
+
+                    System.out.println("How Much Will You be Adding to Pay?:");
+                    double userAmount = scanner.nextDouble();
+
+                    if (userAmount >= totalPrice) {
+                        System.out.println("Transaction Complete!");
+                        double change = userAmount - totalPrice;
+                        System.out.println(" ");
+                        System.out.println("Here is Your Receipt:");
+
+                        System.out.println("Your change: $" + change);
+                    } else {
+                        System.out.println("Not Enough Money Provided!");
+                        return;
+                    }
+
+                    System.out.println(" ");
+                    System.out.println("Your Cart Total is: $" + totalPrice);
+                }
+            }
     }
 
 
