@@ -202,6 +202,7 @@ public class Store {
                         System.out.printf("%-12s $%-10.2f", "Your change:", change);
                         System.out.println(" ");
                         System.out.println("Clearing Cart, Thank You For Shopping!");
+
                         cart.clear();
 
                     } else {
@@ -211,8 +212,3 @@ public class Store {
                 }
         }
     }
-
-
-
-
-
